@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//config.mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 打印Sql语句 -->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <!-- model别名的配置 -->
+
+    <typeAliases>
+        <package name="me.liccon.simple.model"/>
+    </typeAliases>
+
+    <!--</typeAliases>-->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <!-- 配置数据库连接信息 -->
+            <dataSource type="POOLED">
+                <!-- value属性值引用db.properties配置文件中配置的值 -->
+                <property name="driver" value="com.mysql.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/mango_admin?allowMultiQueries=true&amp;useUnicode=true&amp;useSSL=false&amp;zeroDateTimeBehavior=convertToNull&amp;zeroDateTimeBehavior=convertToNull" />
+                <property name="username" value="root" />
+                <property name="password" value="root" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!--
+        <mapper resource="me/liccon/simple/mapper/DataColumnMapper.xml"/>-->
+        <package name="me.liccon.simple.mapper"/>
+    </mappers>
+
+</configuration>

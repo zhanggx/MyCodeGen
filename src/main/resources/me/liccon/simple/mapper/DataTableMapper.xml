@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="me.liccon.simple.mapper.DataTableMapper">
+	<select id="selectAll" resultType="me.liccon.simple.model.DataTable">
+		select table_name,table_comment from information_schema.TABLES where table_schema=#{dbName} AND table_name like concat(#{groupPrefix},'_%')
+	</select>
+	<select id="selectByNames" resultType="me.liccon.simple.model.DataTable">
+		select table_name,table_comment from information_schema.TABLES where table_schema=#{dbName} AND table_name IN
+		<foreach collection="tableNames" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+</mapper>
